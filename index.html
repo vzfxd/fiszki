@@ -35,18 +35,23 @@
 
   .card-body-right{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
-  }
-
-  .card-body-left{
-    display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 50%;
   }
 
   .btn{
     margin: 10px;
+  }
+
+  .card-body-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .types-container{
+    display: flex;
+    flex-wrap: wrap;
   }
 
   body{
@@ -65,7 +70,10 @@
   <div id="flashCard">
     <div class="card" style="width: 75%;">
       <div class="card-body card-body-top">
-        <div class="card-body-left"></div>
+        <div class="card-body-left">
+          <div class="card-title"></div>
+          <div class="types-container"></div>
+        </div>
         <div class="card-body-right">
           <a href="#" class="btn btn-secondary xd1">nastepne slowko</a>
           <a href="#" class="btn btn-secondary xd2">tescik</a>
@@ -80,6 +88,7 @@
 
 <script>
   var learner_key = '';
+  const typesContainer = document.getElementsByClassName('types-container')[0];
   const keyInput = document.getElementById('keyInput');
   const fileInput = document.getElementById('fileInput');
   const flashCard = document.getElementById('flashCard');
@@ -143,13 +152,11 @@
     const cardBodyLeft = document.getElementsByClassName('card-body-left')[0];
     const cardUl = document.getElementsByClassName('list-group')[0]
     cardUl.replaceChildren();
-    cardBodyLeft.replaceChildren();
+    typesContainer.replaceChildren();
 
-    const cardTitle = document.createElement('h4');
-    cardTitle.className = 'card-title'
+    const cardTitle = document.getElementsByClassName('card-title')[0];
     cardTitle.innerText = word;
-    cardBodyLeft.append(cardTitle);
-
+    console.log("xd");
     for(var i=0; i<json.length; i++)
     {
       const type = document.createElement('a');
@@ -162,7 +169,7 @@
         cardUl.replaceChildren();
         update_flashcard(json[event.target.id],cardUl);
       });
-      cardBodyLeft.appendChild(type);
+      typesContainer.appendChild(type);
     }
 
     update_flashcard(json[0],cardUl);
