@@ -122,6 +122,7 @@
         reader.onload = function(e) {
             const contents = e.target.result;
             wordlist = contents.split("\n");
+            learner_key = keyInput.value
             localStorage.setItem('wordlist', JSON.stringify(wordlist)); 
             localStorage.setItem('key', keyInput.value);
             if(learner_key.length > 0)
