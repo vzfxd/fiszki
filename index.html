@@ -89,8 +89,9 @@
 
   var wordlist = [];
 
-  if (localStorage.getItem('wordlist') && learner_key.length > 0) {
+  if (localStorage.getItem('wordlist') && localStorage.getItem('key')) {
     wordlist = JSON.parse(localStorage.getItem('wordlist'));
+    learner_key = localStorage.getItem('key');
     hide_inputs();
     load_flashcard();
   }
@@ -122,7 +123,7 @@
             const contents = e.target.result;
             wordlist = contents.split("\n");
             localStorage.setItem('wordlist', JSON.stringify(wordlist)); 
-            learner_key = keyInput.value;
+            localStorage.setItem('key', keyInput.value);
             if(learner_key.length > 0)
             {
               hide_inputs();
